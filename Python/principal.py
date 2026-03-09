@@ -1,7 +1,7 @@
 from glicemia import Glicemia
 
-lista_glicemica = [Glicemia]
-nome_arquivo = 'glicemia.txt'
+lista_glicemica = []
+nome_arquivo = './glicemia.txt'
 
 with open(nome_arquivo, 'r', encoding='utf8') as leitor:
     for linha in leitor:
@@ -10,9 +10,10 @@ with open(nome_arquivo, 'r', encoding='utf8') as leitor:
         if objeto not in lista_glicemica:
             lista_glicemica.append( objeto )
 
-print("Quantidade de dados lidos: ", len( lista_glicemica ))
+print('Quantidade de dados lidos: ', len(lista_glicemica))
 for linha in lista_glicemica:
-    print(linha, end='')
+    print(linha, end="")
 
-print('\n')
-print("Media glicemica: ", Glicemia.calcular_media(lista_glicemica))
+print("\n")
+print('Media glicemica: ', Glicemia.calcular_media(lista_glicemica))
+print('Mediana glicemica: ', Glicemia.calcular_mediana(lista_glicemica))
