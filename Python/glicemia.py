@@ -1,10 +1,24 @@
 class Glicemia:
     def __init__(self, valor, data, hora):
+        """_summary_
+        metodo construtor da classe glicemia, recebe os dados da glicemia e os atribui aos atributos da classe
+
+        Args:
+            valor (_type_): valor da glicemia registrada
+            data (_type_): data do registro da glicemia 
+            hora (_type_): hora do registro da glicemia
+        """
         self.valor = int(valor) # convertendo para int para facilitar cálculos
         self.data = data
         self.hora = hora.strip() 
 
     def definir_turno(self):
+        """_summary_
+        método que define o turno com base na hora do registro
+
+        Returns:
+            _type_: string indicando o turno (manhã, tarde ou noite)
+        """
         # extrai apenas a hora (ex: "12:30" vira 12)
         hora_int = int(self.hora.split(':')[0])
         
@@ -16,11 +30,26 @@ class Glicemia:
             return "Noite"
 
     def __eq__(self, outro):
+        """_summary_
+        método que compara dois objetos da classe glicemia, considerando-os iguais se tiverem a mesma data e hora
+
+        Args:
+            outro (_type_): objeto da classe glicemia a ser comparado com o objeto atual
+
+        Returns:
+            _type_: True se os objetos forem considerados iguais, False caso contrário
+        """
         if not isinstance(outro, Glicemia):
             return False
         return self.data == outro.data and self.hora == outro.hora
     
     def __str__(self):
+        """_summary_
+        método que retorna uma string formatada com os dados da glicemia
+
+        Returns:
+            _type_: _description_
+        """
         return f'Valor: {self.valor} | Data: {self.data} | Hora: {self.hora} | Turno: {self.definir_turno()}'
 
     @staticmethod

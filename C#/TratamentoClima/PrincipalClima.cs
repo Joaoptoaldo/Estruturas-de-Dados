@@ -5,10 +5,17 @@ using System.IO;
 namespace SistemaClima {
     class Principal {
         static List<Clima> dados = new List<Clima>();
-        static string path = ResolverCaminhoCsv();
+        static string arquivo = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "data", "dadosClimaticos.csv"));
+        
+        static List<Clima> lista_verao = new List<Clima>();
+        static List<Clima> lista_outono = new List<Clima>();
+        static List<Clima> lista_inverno = new List<Clima>();
+        
+        static string path = arquivo;
 
         static void Main() {
             CarregarDados();
+            ExibirLista();
             GerarRelatorio();
         }
 
@@ -30,8 +37,24 @@ namespace SistemaClima {
                 else if (p == "média") peso = 2;
                 else if (p == "pouca") peso = 1;
 
-                dados.Add(new Clima(col[0], col[1], col[2], peso));
+                Clima clima = new Clima(col[0], col[1], col[2], peso);
+                dados.Add(clima);
+                
+                if (clima.Mes == "Dezembro" || clima.Mes == "Janeiro" || clima.Mes == "Fevereiro" || clima.Mes == "Março")
+                    lista_verao.Add(clima);
+                else if (clima.Mes == "Abril" || clima.Mes == "Maio" || clima.Mes == "Junho" || clima.Mes == "Julho")
+                    lista_outono.Add(clima);
+                else
+                    lista_inverno.Add(clima);
             }
+        }
+
+        static void ExibirLista() {
+            Console.WriteLine("\n--- DADOS CLIMÁTICOS ---");
+            foreach (var item in dados) {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine($"Total de registros: {dados.Count}\n");
         }
 
         static void GerarRelatorio() {
@@ -39,25 +62,22 @@ namespace SistemaClima {
             int quenteV = 0, quenteO = 0, quenteI = 0;
             int amenoV = 0, amenoO = 0, amenoI = 0;
 
-            foreach (var item in dados) {
-                bool eVerao = item.Mes == "Dezembro" || item.Mes == "Janeiro" || item.Mes == "Fevereiro" || item.Mes == "Março";
-                bool eOutono = item.Mes == "Abril" || item.Mes == "Maio" || item.Mes == "Junho" || item.Mes == "Julho";
-
-                if (eVerao) {
-                    chuvaV += item.Precipitacao;
-                    if (item.Temperatura.Equals("Quente", StringComparison.OrdinalIgnoreCase)) quenteV++;
-                    if (item.Temperatura.Equals("Ameno", StringComparison.OrdinalIgnoreCase)) amenoV++;
-                }
-                else if (eOutono) {
-                    chuvaO += item.Precipitacao;
-                    if (item.Temperatura.Equals("Quente", StringComparison.OrdinalIgnoreCase)) quenteO++;
-                    if (item.Temperatura.Equals("Ameno", StringComparison.OrdinalIgnoreCase)) amenoO++;
-                }
-                else {
-                    chuvaI += item.Precipitacao;
-                    if (item.Temperatura.Equals("Quente", StringComparison.OrdinalIgnoreCase)) quenteI++;
-                    if (item.Temperatura.Equals("Ameno", StringComparison.OrdinalIgnoreCase)) amenoI++;
-                }
+            foreach (var item in lista_verao) {
+                chuvaV += item.Precipitacao;
+                if (item.Temperatura.Equals("Quente", StringComparison.OrdinalIgnoreCase)) quenteV++;
+                if (item.Temperatura.Equals("Ameno", StringComparison.OrdinalIgnoreCase)) amenoV++;
+            }
+            
+            foreach (var item in lista_outono) {
+                chuvaO += item.Precipitacao;
+                if (item.Temperatura.Equals("Quente", StringComparison.OrdinalIgnoreCase)) quenteO++;
+                if (item.Temperatura.Equals("Ameno", StringComparison.OrdinalIgnoreCase)) amenoO++;
+            }
+            
+            foreach (var item in lista_inverno) {
+                chuvaI += item.Precipitacao;
+                if (item.Temperatura.Equals("Quente", StringComparison.OrdinalIgnoreCase)) quenteI++;
+                if (item.Temperatura.Equals("Ameno", StringComparison.OrdinalIgnoreCase)) amenoI++;
             }
 
             string maisChuva = "Inverno";
@@ -76,7 +96,7 @@ namespace SistemaClima {
             if (amenoV >= amenoO && amenoV >= amenoI) maisAmeno = "Verão";
             else if (amenoO >= amenoV && amenoO >= amenoI) maisAmeno = "Outono";
         
-            Console.WriteLine("\n--- RESULTADOS DO CLIMA ---");
+            Console.WriteLine("--- RESULTADOS DO CLIMA ---");
             Console.WriteLine($"Estação mais chuvosa:  {maisChuva.ToUpper()}");
             Console.WriteLine($"Estação menos chuvosa: {menosChuva.ToUpper()}");
             Console.WriteLine($"Estação mais quente:   {maisQuente.ToUpper()}"); 
@@ -84,22 +104,5 @@ namespace SistemaClima {
             Console.WriteLine("---------------------------\n");
         }
 
-        static string ResolverCaminhoCsv() {
-            string[] caminhos = {
-                "dadosClimaticos.csv",
-                "..\\dadosClimaticos.csv",
-                "..\\..\\dadosClimaticos.csv",
-                "..\\..\\..\\dadosClimaticos.csv"
-            };
-
-            foreach (var caminho in caminhos) {
-                string absoluto = Path.GetFullPath(caminho);
-                if (File.Exists(absoluto)) {
-                    return absoluto;
-                }
-            }
-
-            return string.Empty;
-        }
     }
 }

@@ -1,7 +1,8 @@
 from glicemia import Glicemia
+from pathlib import Path
 
 lista_glicemica = []
-nome_arquivo = './glicemia.txt'
+nome_arquivo = Path(__file__).resolve().parent.parent / 'data' / 'glicemia.txt'
 
 # leitura e limpeza de dados
 try:

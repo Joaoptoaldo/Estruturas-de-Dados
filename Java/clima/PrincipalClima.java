@@ -1,8 +1,9 @@
+package clima;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +11,12 @@ import java.util.List;
 public class PrincipalClima {
 
     public static void main(String[] args) {
-        String caminhoArquivo = resolverCaminhoCsv("..\\dadosClimaticos.csv");
+        String caminhoArquivo = Paths.get(System.getProperty("user.dir"), "data", "dadosClimaticos.csv")
+                .toAbsolutePath()
+                .normalize()
+                .toString();
 
-        if (caminhoArquivo == null) {
+        if (!Files.exists(Paths.get(caminhoArquivo))) {
             System.out.println("Arquivo CSV não encontrado.");
             return;
         }
@@ -76,24 +80,6 @@ public class PrincipalClima {
         System.out.println("Estação mais quente: " + estacaoMaisQuente);
         System.out.println("Estação mais amena: " + estacaoMaisAmena);
         System.out.println("---------------------------\n");
-    }
-
-    private static String resolverCaminhoCsv(String nomeArquivo) {
-        String[] caminhosPossiveis = {
-                nomeArquivo,
-                "..\\" + nomeArquivo,
-                "Java\\" + nomeArquivo,
-                "..\\Java\\" + nomeArquivo
-        };
-
-        for (String caminho : caminhosPossiveis) {
-            Path path = Paths.get(caminho).toAbsolutePath().normalize();
-            if (Files.exists(path) && Files.isRegularFile(path)) {
-                return path.toString();
-            }
-        }
-
-        return null;
     }
 
     private static List<Clima> lerDadosClimaticos(String caminhoArquivo) {

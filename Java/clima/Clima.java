@@ -1,3 +1,4 @@
+package clima;
 //Usando sua linguagem de preferência, é preciso tratar os dados climáticos presentes em dadosClimaticos.csv.
 //Para isso, crie e utilize a classe Clima...
 //Sabendo que Verão são os meses Dezembro, Janeiro, Fevereiro, Março. Que Outono são os meses Abril, Maio, Junho, Julho. Que Inverno são os meses Agosto, Setembro, Outubro, Novembro.

@@ -49,3 +49,7 @@ env/
 Thumbs.db
 .env
 
+# === Java ===
+# arquivos de classe
+*.class
+*.log
