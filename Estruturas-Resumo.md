@@ -1,10 +1,13 @@
 # Estruturas de Dados: Listas, Árvores e Hash
 
-Este material resume três estruturas fundamentais para estudo e prática de Estruturas de Dados:
+Este material resume seis estruturas fundamentais para estudo e prática de Estruturas de Dados:
 
 - **Listas**
 - **Árvores (Tree)**
 - **Hash** (`HashMap` e `HashSet`)
+- **Pilha (Stack)**
+- **Fila (Queue)**
+- **Grafo (Graph)**
 
 ---
 
