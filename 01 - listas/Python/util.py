@@ -1,4 +1,3 @@
-
 def popular_lista_arquivo(lista, nome_arquivo):
     """_summary_
     método que recebe uma lista e um nome de arquivo, e escreve os elementos da lista no arquivo, um por linha

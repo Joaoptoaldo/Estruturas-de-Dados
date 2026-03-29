@@ -7,7 +7,7 @@ namespace SistemaClima
     class Principal 
     {
         static List<Clima> dados = new List<Clima>();
-        static string arquivo = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "data", "dadosClimaticos.csv"));
+static string arquivo = Path.GetFullPath(@"..\..\Data\dadosClimaticos.csv");
         
         static List<Clima> lista_verao = new List<Clima>();
         static List<Clima> lista_outono = new List<Clima>();
