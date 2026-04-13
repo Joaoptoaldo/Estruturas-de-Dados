@@ -1,8 +1,9 @@
+import os
 from glicemia import Glicemia
-from pathlib import Path
 
 lista_glicemica = []
-nome_arquivo = Path(__file__).resolve().parent.parent / 'data' / 'glicemia.txt'
+nome_arquivo = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), '01-listas', 'Data', 'glicemia.txt')
+print(f'Tentando carregar: {nome_arquivo}')
 
 # leitura e limpeza de dados
 try:
@@ -16,6 +17,7 @@ try:
                     lista_glicemica.append(objeto)
 except FileNotFoundError:
     print("Arquivo não encontrado!")
+    exit(1)
 
 # dicionário para agrupar os valores por turno
 turnos_dados = {

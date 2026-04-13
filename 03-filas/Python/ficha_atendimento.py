@@ -88,7 +88,6 @@ class FichaAtendimento:
         if filaPrioritaria:
             print("Fichas prioritárias faltantes: " + str(len(filaPrioritaria)) + " - " + str(filaPrioritaria))
 
-        
     @staticmethod
     def menu(filaNormal=None, filaPrioritaria=None):#none para evitar que a fila seja compartilhada entre as chamadas do menu, ou seja, cada vez que o menu for chamado, uma nova fila será criada
         """_summary_: método de classe que exibe o menu para o usuário escolher as opções, a cada opção escolhida, chama o método correspondente, o menu deve ser exibido até que o usuário escolha a opção de sair, ou seja, a opção 5
