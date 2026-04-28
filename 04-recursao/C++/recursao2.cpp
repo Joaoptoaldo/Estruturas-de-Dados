@@ -28,7 +28,6 @@ recursão como repetição, obedece a 3 situações classicas:
 }
 */
 
-
  void mostrarSequenciaRecursiva(int numero) {
     if (numero > 0) {
         //executar codigo no empilhamento
@@ -48,6 +47,6 @@ int main() {
   mostrarSequenciaC(numero);
   mostrarSequenciaRecursiva(numero);
 
-  return 1;
+  return 0;
 }
 
