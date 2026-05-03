@@ -58,13 +58,13 @@ class sistema_academico:
             self.__alunos.sort(key=lambda x: x.ano_ingresso)
 
     def buscar_aluno(self, nome_procurado):
-        """_summary_: busca um aluno pelo nome, sem diferenciar maiúsculas e minúsculas
+        """_summary_: busca um aluno pelo nome exato
 
         returns:
             _type_: retorna a string formatada com os dados do aluno ou "Aluno não encontrado."
         """
         for aluno in self.__alunos:
-            if aluno.nome.lower() == nome_procurado.lower():
+            if aluno.nome == nome_procurado:
                 return aluno.exibir_completo()
         return "Aluno não encontrado."
 
