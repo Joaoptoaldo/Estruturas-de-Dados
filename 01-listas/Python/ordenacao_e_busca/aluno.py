@@ -7,9 +7,9 @@ class aluno:
 
 
     def exibir_completo(self):
-        """_summary_: retorna uma string com o nome, curso, sexo e ano de ingresso do aluno
+        """_summary_: retorna uma string com os dados completos do aluno
 
-        Returns:
-            _type_: _description_
+        returns:
+            _type_: string formatada com nome, curso, sexo e ano de ingresso
         """
         return f"{self.nome} - {self.curso} - {self.sexo} - {self.ano_ingresso}"

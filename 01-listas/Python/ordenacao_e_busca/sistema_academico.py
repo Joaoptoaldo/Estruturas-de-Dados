@@ -3,9 +3,14 @@ import csv
 
 class sistema_academico:
     def __init__(self):
-        self.__alunos = []  # lista privada de objetos aluno
+        self.__alunos = []  # lista de objetos aluno
 
     def carregar_arquivo(self, nome_arquivo):
+        """_summary_: lê um csv, cria objetos aluno e adiciona os registros válidos à lista interna
+
+        returns:
+            _type_: ignora linhas vazias, cabeçalhos, linhas com menos de 4 campos e valores de ano inválidos, e exibe uma mensagem ao final do carregamento
+        """
         try:
             with open(nome_arquivo, mode='r', encoding='utf-8') as arquivo:
                 leitor = csv.reader(arquivo)
@@ -42,10 +47,10 @@ class sistema_academico:
             print("Arquivo não encontrado")
 
     def ordenar(self, criterio):
-        """_summary_: método para ordenar a lista de alunos com base no critério fornecido (nome ou ano)
+        """_summary_: ordena a lista de alunos por nome ou por ano de ingresso
 
-        Args:
-            criterio (_type_): _description_: "nome" ou "ano"
+        returns:
+            _type_: se o critério informado não for "nome" nem "ano", a lista permanece inalterada
         """
         if criterio.lower() == "nome":
             self.__alunos.sort(key=lambda x: x.nome)
@@ -53,13 +58,10 @@ class sistema_academico:
             self.__alunos.sort(key=lambda x: x.ano_ingresso)
 
     def buscar_aluno(self, nome_procurado):
-        """_summary_: método para buscar um aluno pelo nome exato
+        """_summary_: busca um aluno pelo nome, sem diferenciar maiúsculas e minúsculas
 
-        Args:
-            nome_procurado (_type_): _description_: nome do aluno a ser buscado
-
-        Returns:
-            _type_: _description_
+        returns:
+            _type_: retorna a string formatada com os dados do aluno ou "Aluno não encontrado."
         """
         for aluno in self.__alunos:
             if aluno.nome.lower() == nome_procurado.lower():
@@ -67,10 +69,10 @@ class sistema_academico:
         return "Aluno não encontrado."
 
     def calcular_agregacao(self):
-        """_summary_: método para calcular a quantidade de alunos ingressantes por ano, retornando um dicionário com o ano como chave e a quantidade como valor
+        """_summary_: conta quantos alunos existem por ano de ingresso
 
-        Returns:
-            _type_: _description_
+        returns:
+            _type_: retorna um dicionário em que a chave é o ano de ingresso e o valor é a quantidade de alunos daquele ano
         """
         contagem = {}
         for aluno in self.__alunos:
@@ -78,6 +80,8 @@ class sistema_academico:
         return contagem
 
     def listar_todos(self):
+        """_summary_: exibe os dados completos de todos os alunos cadastrados, um por linha
+        """
         for aluno in self.__alunos:
             print(aluno.exibir_completo())
             
