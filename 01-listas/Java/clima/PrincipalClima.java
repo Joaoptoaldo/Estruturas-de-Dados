@@ -11,7 +11,7 @@ import java.util.List;
 public class PrincipalClima {
 
     public static void main(String[] args) {
-        String caminhoArquivo = Paths.get(System.getProperty("user.dir"), "data", "dadosClimaticos.csv")
+        String caminhoArquivo = Paths.get(System.getProperty("user.dir"), "Data", "dadosClimaticos.csv")
                 .toAbsolutePath()
                 .normalize()
                 .toString();

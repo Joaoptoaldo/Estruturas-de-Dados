@@ -1,47 +1,109 @@
-# prós da recursão: 
-  # código mais limpo, fácil de ler e entender, e pode ser mais eficiente em alguns casos
-# contras da recursão: 
-  # pode consumir mais memória e ser mais lenta do que a iteração, especialmente se a profundidade da recursão for muito grande (pode causar stack overflow)
-
-def contagem_regressiva(n):# n é a variável de controle 
-  if n > 0: # condição de parada
-    print(n)
-    contagem_regressiva(n - 1) # atualiza a variável de controle da recursão a cada chamada
+# recursão é uma operação de repetição via empilhamento de processo
+# toda repetição precisa de 3 situações de ATENÇÃO:
+    # inicialização da variável de controle
+    # condição de parada
+    # atualização da variável de controle
+# contras de usar recursão:
+    # pode causar estouro de pilha (stack overflow) se a profundidade da recursão for muito grande
+    # pode ser menos eficiente em termos de tempo e memória do que soluções iterativas,
+ 
+# pros de usar recursão:
+    # pode tornar o código mais simples e fácil de entender
     
-contagem_regressiva(5)
+def contagem_regressiva(n): # n é a variável de controle
+    if n > 0: # condição de parada
+        print(n) # codigo executado no empilhamento de processo
+        contagem_regressiva(n - 1) # atualização da variável de controle, a cada chamada recursiva o valor de n diminui em 1
 
+ 
 def contagem_progressiva(n):
-  if n > 0:
-    contagem_progressiva(n - 1)
-    print(n) # executando o desenpilhamento de processos
-    
-contagem_progressiva(5)
+    if n > 0:
+        contagem_progressiva(n - 1)
+        print(n) #codigo executado no desempilhamento de processo
 
-def soma_elementos(n):
-  if n > 0: 
-    soma = n + soma_elementos(n - 1) # a função chama a si mesma e acumula o resultado da soma
-    return soma
-  else:
-    return 0 # condição de parada, quando n chega a 0, a função retorna 0 e começa a desenpilhar as chamadas anteriores, acumulando a soma total
-  
-  
-  # def soma_elementos(n):
-  #   if n > 0: 
-  #     return n + soma_elementos(n - 1) 
-  #   else:
-  #     return 0 
-  
-  if __name__ == "__main__":
-  
-    lista = [10, 15, 20, 25, 30]
-   
-   
-  #print (soma_lista(lista, len(lista))) 
-  
+        
+def soma_elementos(n): #inicialização da varia'vel de controle
+    if n > 0: #condição de parada
+        soma = n + soma_elementos(n - 1) #empilhamento com a atualização da variável de controle
+        return soma
+    else:
+        return 0
+        
+# def soma_elementos(n):
+#     if n > 0:
+#         return n + soma_elementos(n - 1)
+#     else:
+#         return 0
+ 
+def soma_lista(lista, n):
+    if n > 0:
+        return lista[n - 1] + soma_lista(lista, n - 1)
+    else:
+        return 0
+    
 def conta_pares(lista, n):
-  if n == 0: # condição de parada, quando n chega a 0,
-    return 0
-  else:
-    if lista[n-1] % 2 == 0: # verifica se o último elemento da lista é par
-      return 1 + conta_pares(lista, n - 1) # se for par, soma 1 e chama a função novamente com n-1
-    print(conta_pares(lista, len(lista)))
+    if n > 0:
+        if lista[n - 1] % 2 == 0:
+            return 1 + conta_pares(lista, n - 1)
+        else:
+            return 0 + conta_pares(lista, n - 1)
+    else:
+        return 0
+    
+def soma_pares(lista, n):
+    if n > 0:
+        if lista[n - 1] % 2 == 0:
+            return lista[n - 1] + soma_pares(lista, n - 1)
+        else:
+            return 0 + soma_pares(lista, n - 1)
+    else:
+        return 0
+
+contagem_regressiva(10)
+contagem_progressiva(10)
+print(soma_elementos(10))
+ 
+
+        
+if __name__ == "__main__":
+    
+    lista = [10, 15, 20, 25, 30]
+    # print(soma_lista(lista, len(lista)))
+    # print(conta_pares(lista, len(lista)))
+    print(soma_pares(lista, len(lista)))
+    
+
+
+# exercícios de fixação
+# 1) função recursiva que receba um número, uma lista, seu tamanho/comprimento e retorna a quantidade de vezes que o número aparece na lista.
+
+def conta_ocorrencias(numero, lista, n):
+    if n > 0:
+        if lista[n - 1] == numero:
+            return 1 + conta_ocorrencias(numero, lista, n - 1)
+        else:
+            return 0 + conta_ocorrencias(numero, lista, n - 1)
+    else:
+        return 0
+ 
+# 2) função recursiva que recebe um número, uma lista, seu tamanho/comprimento e substitui o número pelo valor -1.
+
+def substitui_por_menos_um(numero, lista, n):
+    if n > 0:
+        if lista[n - 1] == numero:
+            lista[n - 1] = -1
+        substitui_por_menos_um(numero, lista, n - 1)
+
+ 
+
+# 3) função recursiva que recebe um número, uma lista, seu tamanho/comprimento e retorna a posição do número na lista (ou -1 se o número não estiver presente).
+ 
+
+def encontra_posicao(numero, lista, n):
+    if n > 0:
+        if lista[n - 1] == numero:
+            return n - 1
+        else:
+            return encontra_posicao(numero, lista, n - 1)
+    else:
+        return -1

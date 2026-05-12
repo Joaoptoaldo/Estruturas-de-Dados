@@ -14,7 +14,7 @@ try:
                 valor, data, hora = partes
                 objeto = Glicemia(valor, data, hora)
                 if objeto not in lista_glicemica:
-                    lista_glicemica.append(objeto)
+                    lista_glicemica.append(objeto)       
 except FileNotFoundError:
     print("Arquivo não encontrado!")
     exit(1)
