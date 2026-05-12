@@ -1,0 +1,42 @@
+Programa em Java para gerenciar figurinhas da copa 2026. 
+O programa deve persistir e identificar figurinhas para troca entre duas pessoas.
+
+A classe básica:
+
+Figura:
+    nomeSelecao
+
+    numeroFigura
+
+    descricao //nome do jogador, brasao, ou bandeira
+
+    quantidade //usada nas repetidas
+
+    rara (boolean)
+
+
+MENU:
+
+    1 - Cadastrar figuras repetidas pessoais (persistidas em arquivo csv figuras_repetidas_pessoais.csv e adicionadas na ListaRepetidasPessoais)
+    2 - Listar figuras repetidas pessoais (mostrar a lista respectiva)
+    3 - Cadastrar figuras desejadas pessoais (persistidas em arquivo csv figuras_desejadas_pessoais.csv e adicionadas na ListaDesejadasPessoais)
+    4 - Listar figuras desejadas pessoais (mostrar a lista respectiva)
+    5 - Carregar figuras repetidas OUTRO (carregar o arquivo, listar as figuras e mostrar as figuras que dão match com ListaDesejadasPessoais)
+    6 - Carregar figuras desejadas OUTRO (carregar o arquivo, listar as figuras e mostrar as figuras que dão match com ListaRepetidasPessoais)
+    7 - Sair
+
+int opcao:
+
+Toda vez que o programa for iniciado, os arquivos csv pessoais devem ser populados em suas listas respectivas.
+
+Tem um arquivo de desejadas?
+Tem um arquivo de repetidas?
+
+Se sim, trazer para a lista
+
+arquivo csv + lista
+
+    - figuras_repetidas_pessoais.csv + ListaRepetidasPessoais
+
+
+ListaRepetidosPessoais <==> ListaRepetidasOutro
