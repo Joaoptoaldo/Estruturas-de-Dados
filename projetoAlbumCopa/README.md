@@ -10,11 +10,9 @@
 
 
 
-### Arquitetura do Projeto
+O projeto utiliza uma estrutura simplificada com um único pacote `pkg`:
 
-O projeto utiliza uma estrutura simplificada com um único pacote `model`:
-
-*   **`model`**: Pacote contendo todas as classes principais:
+*   **`pkg`**: Pacote contendo todas as classes principais:
     *   `Figura.java` - POJO (Plain Old Java Object) que representa a entidade figurinha com atributos e comportamentos.
     *   `GerenciadorArquivo.java` - Responsável pela persistência em arquivos CSV (leitura e escrita).
     *   `Principal.java` - Classe com método `main()` que gerencia a interface de console e fluxo do programa.
@@ -23,20 +21,20 @@ O projeto utiliza uma estrutura simplificada com um único pacote `model`:
 ```
 projetoAlbumCopa/
 ├── Java/
-│   └── model/
+│   └── pkg/
 │       ├── Figura.java
 │       ├── GerenciadorArquivo.java
 │       └── Principal.java
 ├── Data/
 │   ├── figuras_repetidas_pessoais.csv
 │   └── figuras_desejadas_pessoais.csv
-└── projeto-album-copa.md
+└── README.md
 ```
 
 ### Funcionalidades
 
 1.  **Gestão Pessoal:** Cadastro e listagem de figurinhas repetidas e desejadas.
-2.  **Persistência Automática:** Os dados são salvos em arquivos `.csv` na pasta `/data` a cada alteração.
+2.  **Persistência Automática:** Os dados são salvos em arquivos `.csv` na pasta `/Data` a cada alteração.
 3.  **Lógica de Match (Interseção):**
     *   **Match de Entrada:** O sistema lê as repetidas de um terceiro e filtra apenas as que você deseja.
     *   **Match de Saída:** O sistema lê as desejadas de um terceiro e mostra quais das suas repetidas podem interessar a ele.
@@ -59,17 +57,17 @@ Os arquivos são salvos utilizando o separador `;` (ponto e vírgula) seguindo o
 
 #### Compilação
 ```bash
-cd projetoAlbumCopa/Java/model
+cd projetoAlbumCopa/Java/pkg
 javac *.java
 ```
 
 #### Execução
 ```bash
 cd projetoAlbumCopa/Java
-java model.Principal
+java pkg.Principal
 ```
 
-**Nota:** A execução deve ser realizada a partir do diretório `projetoAlbumCopa/Java/` para que o caminho relativo dos arquivos CSV (pasta `Data`) seja encontrado corretamente.
+**Nota:** A execução deve ser realizada a partir do diretório `projetoAlbumCopa/Java/` para que o caminho relativo dos arquivos CSV (pasta `Data`) seja encontrado corretamente. O Java executará a classe `Principal` dentro do pacote `pkg`.
 
 ### Estrutura de Dados Utilizadas
 

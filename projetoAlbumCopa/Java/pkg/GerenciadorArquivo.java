@@ -1,4 +1,4 @@
-package model;
+package pkg;
 
 import java.io.BufferedReader;//para ler o arquivo
 import java.io.FileReader;//para abrir o arquivo para leitura

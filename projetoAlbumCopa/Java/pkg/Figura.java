@@ -1,4 +1,4 @@
-package model;
+package pkg;
 
 public class Figura {
     private String nomeSelecao;
